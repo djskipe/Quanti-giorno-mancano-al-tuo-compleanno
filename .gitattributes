@@ -1,2 +1,37 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quanti giorni mancano al tuo compleanno?</title>
+</head>
+<body>
+
+<h1>Calcolo quanti giorni mancano al tuo compleanno</h1>
+
+<label for="birthday">Inserisci la tua data di nascita:</label>
+<input type="date" id="birthday">
+
+<button onclick="calcolaGiorni()">Invio</button>
+
+<p id="result"></p>
+
+<script>
+function calcolaGiorni(){
+  let inputDate = new Date(document.getElementById("birthday").value);
+  let today = new Date();
+  let compleanno = new Date(today.getFullYear(), inputDate.getMonth(), inputDate.getDate());
+
+  if(today > compleanno){
+    compleanno.setFullYear(compleanno.getFullYear()+1);
+  }
+
+  let daysLeft = Math.ceil((compleanno - today) / (1000 * 60 * 60 * 24));
+
+  document.getElementById("result").innerText = "Mancano " + daysLeft + " giorni al tuo compleanno!";
+}
+</script>
+
+</body>
+</html>
